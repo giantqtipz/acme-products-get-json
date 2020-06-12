@@ -13,7 +13,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/products', (req, res) => {
-    res.sendFile(path.join(__dirname, `./products.json`)); 
+    readJSON(`products.json`)
+    .then(data => res.send(data))
+    .catch(error => res.send(error))
 })
 
 const readJSON = (file)=> {
